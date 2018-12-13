@@ -12,7 +12,7 @@ export class ParqueaderoService {
     return  this.httpClient.get('http://localhost:8080/parqueadero/buscarVehiculos').toPromise();
   }
 
-  consultar(placa:String){
+  salida(placa:String){
     return  this.httpClient.post('http://localhost:8080/parqueadero/registroSalida/', placa, this.httpOptions).toPromise();
   }
 
@@ -20,4 +20,7 @@ export class ParqueaderoService {
     return  this.httpClient.post<any>('http://localhost:8080/parqueadero/registroEntrada', vehiculo, this.httpOptions).toPromise();
   }
 
+  obtenerTrm(){
+    return this.httpClient.get('http://free.currencyconverterapi.com/api/v5/convert?q=USD_COP&compact=y').toPromise();
+  }
 }

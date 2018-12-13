@@ -32,7 +32,7 @@ export class ParqueaderoComponent implements OnInit {
   parqueadero:any = new Parqueadero;
   parqueaderoConsultado:any = {};
   
-
+  trm:any;
   consultaPlaca:String="";
   mensajeListar:String="";
   mostrarMensajeListar:boolean = false;
@@ -54,6 +54,14 @@ export class ParqueaderoComponent implements OnInit {
   }
 
   ngOnInit() {
+
+    this.service.obtenerTrm().then(
+      Data=>{
+      console.log(Data)
+      this.trm = Data
+      this.trm = this.trm.USD_COP.val
+      }
+    )
   }
 
 
@@ -96,7 +104,7 @@ export class ParqueaderoComponent implements OnInit {
   }
 
   consultar(){
-    this.service.consultar(this.consultaPlaca).then(data=>{
+    this.service.salida(this.consultaPlaca).then(data=>{
       if(data){
         this.parqueaderoConsultado = data;
         this.consultaSalida = true;

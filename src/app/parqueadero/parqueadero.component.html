@@ -51,15 +51,17 @@
             <div class="form-group , text-center" *ngIf="mostrarDatos">
                 <table class="table table-striped">
                       <tr>
-                        <th >Vehiculo</th>
+                        <th>Id. Vehiculo</th>
+                        <th>Tipo Vehiculo</th>
                         <th>Placa</th>
-                        <th >Fecha Ingreso</th>
-                        <th >Cilindraje</th>
+                        <th>Fecha Ingreso</th>
+                        <th>Cilindraje</th>
                       </tr>
                       <tr *ngFor="let val of parqueadero">
-                          <th >{{val.vehiculo.tipoVehiculo}}</th>
+                          <th>{{val.vehiculo.idVehiculo}}</th>
+                          <th>{{val.vehiculo.tipoVehiculo}}</th>
                           <th>{{val.vehiculo.placa}}</th>
-                          <th >{{val.fechaIngreso  | date:'dd/MM/yyyy hh:mm' }}</th>
+                          <th>{{val.fechaIngreso  | date:'dd/MM/yyyy hh:mm' }}</th>
                           <th><span *ngIf="val.vehiculo.cilindraje==0">Dato No Suministrado</span>
                           <span *ngIf="val.vehiculo.cilindraje!=0">{{val.vehiculo.cilindraje}}</span>
 
@@ -98,11 +100,12 @@
                           <h4 class="modal-title" *ngIf="mostrarMensajeListar">{{mensajeListar}}</h4>
                         </div>
                     <div class="form-group, text-center" *ngIf="consultaSalida">
-                      <label for="placaVehiculoSale"> <b>Placa vehiculo: </b> {{parqueaderoConsultado.vehiculo.placa}}  </label><br>
-                      <label for="tipoVehiculoSale"><b>Tipo Vehiculo: </b> {{parqueaderoConsultado.vehiculo.tipoVehiculo}} </label><br>
-                      <label for="horaIngresoSale"><b>Hora Ingreso:</b> {{parqueaderoConsultado.fechaIngreso | date:'dd/MM/yyyy hh:mm' }} </label><br>
-                      <label for="horaIngresoSale"><b>Hora Salida:</b> {{parqueaderoConsultado.fechaSalida | date:'dd/MM/yyyy hh:mm' }} </label><br>
-                      <label for="horaIngresoSale"><b>Valor a Pagar:</b> {{parqueaderoConsultado.cobro | currency}} </label><br>
+                        <label for="IdVehiculo"> <b>Id. Vehiculo: </b> {{parqueaderoConsultado.vehiculo.idVehiculo}}  </label><br>
+                      <label for="placaVehiculo"> <b>Placa Vehiculo: </b> {{parqueaderoConsultado.vehiculo.placa}}  </label><br>
+                      <label for="tipoVehiculo"><b>Tipo Vehiculo: </b> {{parqueaderoConsultado.vehiculo.tipoVehiculo}} </label><br>
+                      <label for="horaIngreso"><b>Fecha - Hora Ingreso:</b> {{parqueaderoConsultado.fechaIngreso | date:'dd/MM/yyyy hh:mm' }} </label><br>
+                      <label for="horaIngreso"><b>Fecha - Hora Salida:</b> {{parqueaderoConsultado.fechaSalida | date:'dd/MM/yyyy hh:mm' }} </label><br>
+                      <label for="valorApagar"><b>Valor a Pagar:</b> {{parqueaderoConsultado.cobro | currency}} </label><br>
                     </div>
                   </div>
                   <div class="modal-footer">
@@ -114,5 +117,16 @@
 
       </ng-template>
     </ngb-tab>
+    <ngb-tab title="TRM">
+        <ng-template ngbTabContent>
+            <br>
+            <br>
+            <br>
+             <div>
+            <h1 class="text-center">El valor de la TRM el día de hoy es de: {{trm}}</h1>
+          </div>
+        </ng-template>
+    </ngb-tab>
+
   </ngb-tabset>
 </div>

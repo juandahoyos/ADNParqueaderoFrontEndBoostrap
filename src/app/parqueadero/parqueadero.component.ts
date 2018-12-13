@@ -87,7 +87,7 @@ export class ParqueaderoComponent implements OnInit {
   }
 
   cancelarIngreso(){
-    this.registro.setValue({tipoVehiculo:"NoSelect",placa:"",cilindraje:""});
+    this.registro.reset();
   }
 
   limpiarTabla(){

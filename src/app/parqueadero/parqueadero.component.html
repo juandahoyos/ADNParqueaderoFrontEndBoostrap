@@ -1,4 +1,11 @@
 <div class="container">
+  <h1 class="text-center" style="color:#0275d8">Parqueadero ADN CEIBA</h1>
+
+</div>
+<br>
+<br>
+<br>
+<div class="container">
   <ngb-tabset>
     <ngb-tab title="Ingreso de Vehiculo">
       <ng-template ngbTabContent>
@@ -6,31 +13,36 @@
         <br>
         <br>
         <div>
-          <h1 class="text-center">Registro de Vehiculos</h1>
-          <form [formGroup] = "registro" (ngSubmit)="guardar()">
+          <h1 class="text-center" style="color:#0275d8">Registro de Vehiculos</h1>
+          <form [formGroup]="registro" (ngSubmit)="guardar()">
             <div class="form-group">
-              <input type="text" formControlName="placa" placeholder="Placa" onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()" name="placa" class="form-control" id="placa" required>
-              <label class="text-danger" *ngIf="!registro.get('placa').valid" [ngClass] = "'error'">* Placa requerida </label>
+              <input type="text" formControlName="placa" placeholder="Placa" onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()"
+                name="placa" class="form-control" id="placa" required>
+              <label class="text-danger" *ngIf="!registro.get('placa').valid" [ngClass]="'error'">* Placa requerida
+              </label>
             </div>
             <div class="form-group">
               <label for="tipo">Tipo de Vehiculo:</label>
               <select class="form-control" formControlName="tipoVehiculo" name="tipo" id="tipo" required>
-                <option *ngFor="let tipoVehiculo of tipoVehiculo" [value]="tipoVehiculo" >{{tipoVehiculo}}</option>
+                <option *ngFor="let tipoVehiculo of tipoVehiculo" [value]="tipoVehiculo">{{tipoVehiculo}}</option>
                 <option (value)="CARRO">CARRO</option>
                 <option (value)="MOTO">MOTO</option>
               </select>
-              <label class="text-danger" *ngIf="!registro.get('tipoVehiculo').valid" [ngClass] = "'error'">* Tipo Vehiculo requerida </label>
+              <label class="text-danger" *ngIf="!registro.get('tipoVehiculo').valid" [ngClass]="'error'">* Tipo
+                Vehiculo requerida </label>
             </div>
-     
+
             <div *ngIf="(registro.get('tipoVehiculo').value=='MOTO')" class="form-group">
               <label for="cilindraje">Cilindraje Vehiculo:</label>
-              <input type="number" formControlName = "cilindraje" name="cilindraje" class="form-control" id="cilindraje">
+              <input type="number" formControlName="cilindraje" name="cilindraje" class="form-control" id="cilindraje">
             </div>
 
             <div class="form-group , text-center">
-              <button type="submit" [disabled]="!registro.valid" class="btn btn-success"  style="margin: 3%">Ingresar Vehiculo</button>
-              <button type="button" (click)="cancelarIngreso()" class="btn btn-info" style="margin: 3%">Cancelar ingreso</button>
-            </div>  
+              <button type="submit" [disabled]="!registro.valid" class="btn btn-success" style="margin: 3%">Ingresar
+                Vehiculo</button>
+              <button type="button" (click)="cancelarIngreso()" class="btn btn-info" style="margin: 3%">Cancelar
+                ingreso</button>
+            </div>
           </form>
         </div>
 
@@ -42,90 +54,94 @@
         <br>
         <br>
         <div>
-          <h1 class="text-center">Consulta de Vehiculos</h1>
+          <h1 class="text-center" style="color:#0275d8">Consulta de Vehiculos</h1>
           <form>
             <div class="form-group , text-center">
               <button (click)="listar()" class="btn btn-outline-primary mb-2 mr-2" style="margin: 3%">Ver Vehiculos</button>
               <button (click)="limpiarTabla()" class="btn btn-outline-info mb-2 mr-2" style="margin: 3%">Limpiar Datos</button>
             </div>
             <div class="form-group , text-center" *ngIf="mostrarDatos">
-                <table class="table table-striped">
-                      <tr>
-                        <th>Id. Vehiculo</th>
-                        <th>Tipo Vehiculo</th>
-                        <th>Placa</th>
-                        <th>Fecha Ingreso</th>
-                        <th>Cilindraje</th>
-                      </tr>
-                      <tr *ngFor="let val of parqueadero">
-                          <th>{{val.vehiculo.idVehiculo}}</th>
-                          <th>{{val.vehiculo.tipoVehiculo}}</th>
-                          <th>{{val.vehiculo.placa}}</th>
-                          <th>{{val.fechaIngreso  | date:'dd/MM/yyyy hh:mm' }}</th>
-                          <th><span *ngIf="val.vehiculo.cilindraje==0">Dato No Suministrado</span>
-                          <span *ngIf="val.vehiculo.cilindraje!=0">{{val.vehiculo.cilindraje}}</span>
+              <table class="table table-striped">
+                <tr>
+                  <th>Id. Vehiculo</th>
+                  <th>Tipo Vehiculo</th>
+                  <th>Placa</th>
+                  <th>Fecha Ingreso</th>
+                  <th>Cilindraje</th>
+                </tr>
+                <tr *ngFor="let val of parqueadero">
+                  <th>{{val.vehiculo.idVehiculo}}</th>
+                  <th>{{val.vehiculo.tipoVehiculo}}</th>
+                  <th>{{val.vehiculo.placa}}</th>
+                  <th>{{val.fechaIngreso | date:'dd/MM/yyyy hh:mm' }}</th>
+                  <th><span *ngIf="val.vehiculo.cilindraje==0">Dato No Suministrado</span>
+                    <span *ngIf="val.vehiculo.cilindraje!=0">{{val.vehiculo.cilindraje}}</span>
 
-                          </th>
-                      </tr>
+                  </th>
+                </tr>
               </table>
-              </div>
+            </div>
           </form>
         </div>
       </ng-template>
     </ngb-tab>
     <ngb-tab title="Salida de Vehiculo">
       <ng-template ngbTabContent>
-          <br>
-          <br>
-          <br>
-          <div>
-              <h1 class="text-center">Salida de Vehiculos</h1>
-              <form>
-                  <div class="form-group">
-                      <input  type="text" placeholder="Placa" [(ngModel)]="consultaPlaca" onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()" name="placa" class="form-control" id="placaSalida">
-                    </div>
-                    <br>
-                    <br>
-                 
-                <div class="form-group , text-center">
-                  <button class="btn btn-outline-primary mb-2 mr-2" (click)="lanzarModal(content)">Generar Cobro</button>
-                </div>
-
-                <ng-template #content let-c="close" let-d="dismiss">
-                  <div class="modal-header">
-                    <h4 class="modal-title">Cobro Generado</h4>
-                  </div>
-                  <div class="modal-body">
-                      <div class="form-group, text-center">
-                          <h4 class="modal-title" *ngIf="mostrarMensajeListar">{{mensajeListar}}</h4>
-                        </div>
-                    <div class="form-group, text-center" *ngIf="consultaSalida">
-                        <label for="IdVehiculo"> <b>Id. Vehiculo: </b> {{parqueaderoConsultado.vehiculo.idVehiculo}}  </label><br>
-                      <label for="placaVehiculo"> <b>Placa Vehiculo: </b> {{parqueaderoConsultado.vehiculo.placa}}  </label><br>
-                      <label for="tipoVehiculo"><b>Tipo Vehiculo: </b> {{parqueaderoConsultado.vehiculo.tipoVehiculo}} </label><br>
-                      <label for="horaIngreso"><b>Fecha - Hora Ingreso:</b> {{parqueaderoConsultado.fechaIngreso | date:'dd/MM/yyyy hh:mm' }} </label><br>
-                      <label for="horaIngreso"><b>Fecha - Hora Salida:</b> {{parqueaderoConsultado.fechaSalida | date:'dd/MM/yyyy hh:mm' }} </label><br>
-                      <label for="valorApagar"><b>Valor a Pagar:</b> {{parqueaderoConsultado.cobro | currency}} </label><br>
-                    </div>
-                  </div>
-                  <div class="modal-footer">
-                    <button class="btn btn-outline-primary mb-2 mr-2" (click)="c('Close click')">Aceptar</button>
-                  </div>
-                </ng-template>
-              </form>
+        <br>
+        <br>
+        <br>
+        <div>
+          <h1 class="text-center" style="color:#0275d8">Salida de Vehiculos</h1>
+          <form>
+            <div class="form-group">
+              <input type="text" placeholder="Placa" [(ngModel)]="consultaPlaca" onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()"
+                name="placa" class="form-control" id="placaSalida">
             </div>
+            <br>
+            <br>
+
+            <div class="form-group , text-center">
+              <button class="btn btn-outline-primary mb-2 mr-2" (click)="lanzarModal(content)">Generar Cobro</button>
+            </div>
+
+            <ng-template #content let-c="close" let-d="dismiss">
+              <div class="modal-header">
+                <h4 class="modal-title">Cobro Generado</h4>
+              </div>
+              <div class="modal-body">
+                <div class="form-group, text-center">
+                  <h4 class="modal-title" *ngIf="mostrarMensajeListar">{{mensajeListar}}</h4>
+                </div>
+                <div class="form-group, text-center" *ngIf="consultaSalida">
+                  <label for="IdVehiculo"> <b>Id. Vehiculo: </b> {{parqueaderoConsultado.vehiculo.idVehiculo}} </label><br>
+                  <label for="placaVehiculo"> <b>Placa Vehiculo: </b> {{parqueaderoConsultado.vehiculo.placa}} </label><br>
+                  <label for="tipoVehiculo"><b>Tipo Vehiculo: </b> {{parqueaderoConsultado.vehiculo.tipoVehiculo}}
+                  </label><br>
+                  <label for="horaIngreso"><b>Fecha - Hora Ingreso:</b> {{parqueaderoConsultado.fechaIngreso |
+                    date:'dd/MM/yyyy hh:mm' }} </label><br>
+                  <label for="horaIngreso"><b>Fecha - Hora Salida:</b> {{parqueaderoConsultado.fechaSalida |
+                    date:'dd/MM/yyyy hh:mm' }} </label><br>
+                  <label for="valorApagar"><b>Valor a Pagar:</b> {{parqueaderoConsultado.cobro | currency}} </label><br>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button class="btn btn-outline-primary mb-2 mr-2" (click)="c('Close click')">Aceptar</button>
+              </div>
+            </ng-template>
+          </form>
+        </div>
 
       </ng-template>
     </ngb-tab>
     <ngb-tab title="TRM">
-        <ng-template ngbTabContent>
-            <br>
-            <br>
-            <br>
-             <div>
-            <h1 class="text-center">El valor de la TRM el día de hoy es de: {{trm}}</h1>
-          </div>
-        </ng-template>
+      <ng-template ngbTabContent>
+        <br>
+        <br>
+        <br>
+        <div>
+          <h1 class="text-center">El valor de la TRM el día de hoy es de: {{trm}}</h1>
+        </div>
+      </ng-template>
     </ngb-tab>
 
   </ngb-tabset>
